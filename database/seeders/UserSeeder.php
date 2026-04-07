@@ -14,25 +14,34 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => 'Administrador',
-            'email' => 'admin@sigerd.com',
-            'password' => Hash::make('password'),
-            'role' => 'administrador',
-        ]);
+        // Administrador
+        User::updateOrCreate(
+            ['email' => 'admin@sigerd.com'],
+            [
+                'name' => 'Administrador',
+                'password' => Hash::make('password123'),
+                'role' => 'administrador',
+            ]
+        );
 
-        User::create([
-            'name' => 'Trabajador Uno',
-            'email' => 'trabajador1@sigerd.com',
-            'password' => Hash::make('password'),
-            'role' => 'trabajador',
-        ]);
+        // Trabajador
+        User::updateOrCreate(
+            ['email' => 'trabajador@sigerd.com'],
+            [
+                'name' => 'Trabajador',
+                'password' => Hash::make('password123'),
+                'role' => 'trabajador',
+            ]
+        );
 
-        User::create([
-            'name' => 'Instructor Uno',
-            'email' => 'instructor1@sigerd.com',
-            'password' => Hash::make('password'),
-            'role' => 'instructor',
-        ]);
+        // Instructor
+        User::updateOrCreate(
+            ['email' => 'instructor@sigerd.com'],
+            [
+                'name' => 'Instructor',
+                'password' => Hash::make('password123'),
+                'role' => 'instructor',
+            ]
+        );
     }
 }
