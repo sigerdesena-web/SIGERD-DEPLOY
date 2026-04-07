@@ -12,6 +12,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/run-seeds-production-temp', function () {
+    \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'Database\\\\Seeders\\\\UserSeeder', '--force' => true]);
+    return "Seeded successfully. Output: " . \Illuminate\Support\Facades\Artisan::output();
+});
+
 Route::get('/dashboard', function () {
     $user = Auth::user();
 
