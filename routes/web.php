@@ -12,15 +12,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/run-seeds-production-temp', function () {
-    try {
-        \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => \Database\Seeders\UserSeeder::class, '--force' => true]);
-        return "Seeded successfully. Output: " . \Illuminate\Support\Facades\Artisan::output();
-    } catch (\Throwable $e) {
-        return "Error: " . $e->getMessage();
-    }
-});
-
 Route::get('/dashboard', function () {
     $user = Auth::user();
 
