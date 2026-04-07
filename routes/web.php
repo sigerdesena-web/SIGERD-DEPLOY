@@ -13,8 +13,12 @@ Route::get('/', function () {
 });
 
 Route::get('/run-seeds-production-temp', function () {
-    \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'Database\\\\Seeders\\\\UserSeeder', '--force' => true]);
-    return "Seeded successfully. Output: " . \Illuminate\Support\Facades\Artisan::output();
+    try {
+        \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => \Database\Seeders\UserSeeder::class, '--force' => true]);
+        return "Seeded successfully. Output: " . \Illuminate\Support\Facades\Artisan::output();
+    } catch (\Throwable $e) {
+        return "Error: " . $e->getMessage();
+    }
 });
 
 Route::get('/dashboard', function () {
